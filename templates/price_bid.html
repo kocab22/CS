@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"> <a href="/">Home</a> </li>
+    <li class="breadcrumb-item"> <a href="{% url 'company' price_bid.company.pk %}">{{price_bid.company}}</a></li>
+    <li class="breadcrumb-item active"> {{price_bid.number}} </li>
+    
+{% endblock %}
+{%block content %}
+    <div class="container">
+        <table class="table">
+            <h6>nabídka č. {{price_bid.number}} <small class="text-muted d-block">{{price_bid.created_at}}</small></h6>
+            <thead class="thead-inverse">
+                <tr>
+                    <th>znak</th>
+                    <th>popis</th>
+                    <th>cena (VN)</th>
+                    <th>dostupnost</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                {% for part in parts_list%}
+                <tr>
+                    
+                    <td>{{part.number}}</td>
+                    <td>{{part.description}}</td>
+                    <td>{{part.price}} CZK/ks</td>
+                    <td>{{part.location}}</td>
+                    <td>{{part.count}}x</td>
+                    <td>{{price}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <br>
+        </table>
+        <textarea name="" id="" cols="30" rows="10">{{price_bid.text}}</textarea>
+    </div>
+{% endblock %}
+

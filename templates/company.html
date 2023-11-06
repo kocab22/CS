@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<body>
+  {% block breadcrumb %}
+  
+    <li class="breadcrumb-item"> <a href="/">Home</a> </li>
+    <li class="breadcrumb-item"> <a href="{% url 'company' company.pk %}">{{company.name}}</a></li>
+
+  {% endblock %}
+  
+  {% block content%}
+    
+    <div class="container mb-4">
+      <a href="{% url 'new_bid' company.pk %}" class="btn btn-primary">Vytvořit nabídku</a>
+    </div>
+
+  <div class="container">
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Cenová nabídka</th>
+          <th>Servisní případ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bid in bids %}
+          {% if bid.company_id == company.id %}
+            <tr>
+              <td>
+                <a href="{% url 'price_bid' bid.id %}">{{bid.number}}</a>
+              </td>
+              <td>*</td>
+            </tr> 
+          {% endif %}
+        {% endfor %}
+        <p> PK spolecnosti je: {{company.pk}}</p>
+      </tbody>
+    </table>
+  </div>
+  
+</body>
+{% endblock%}
+</html>

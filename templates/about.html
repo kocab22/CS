@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"> <a href="/">Home</a> </li>
+<li class="breadcrumb-item active">About</li>
+{% endblock %}
+
+{% block content%}
+<body>
+      
+    <h6>Tato webová aplikace byla vytvořena pro usnadnění práce všem kolegům na divizi MANURHIN.</h6>
+    <br>
+    <h6>Body ktere je treba udelat:</h6>
+    <h6>- pohlidat aby pri vymazani cenove nabidky nezmizely dily z databaze</h6>
+    <h6>- 👌 pri tvorbe nabidky si prevzit spolecnost, abych ji nemusel vybirat</h6>
+    <h6>- pri vyberu dilu z databaze vybrat vsechny jeho instance</h6>
+    <h6>- implementovat moznost upravy cenove nabidky (odmazani radku, uprava textu atd)</h6>
+    <h6>- 👌 zprovoznit nejakou formu rendrovani formularu (crispy / widget tweaks)</h6>
+    <h6>- po vyplneni formulare provest redirect na nove vznikly price bid</h6>
+    <h6>- pridat moznost vkladat servsini pripady</h6>
+    <h6>- predelat semafor na servisni pripady</h6>
+    <h6>- {{company.pk}}</h6>
+    <h6></h6>
+    <form method="post">
+        <button type="submit" class="btn btn-success">HIT</button>
+        {% csrf_token %}
+        {% crispy form %}
+    </form>
+  
+    <br>
+    <br>
+    <div class="card-footer fixed-bottom">autor: Jaromír Kaláb</div>
+    
+    
+</body>
+{% endblock %}

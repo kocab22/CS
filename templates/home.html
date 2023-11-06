@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">
+        <a href="/">Home</a>
+    </li>
+{% endblock %}
+
+{% block content%}
+
+
+<div class="container mb-4">
+    <button type="button" class="btn btn-warning"><a href="/admin">ADMIN</a></button>
+    <a href="#" class="btn btn-primary">Vytvořit nabídku</a>
+    <a href="#" class="btn btn-primary">Založit servisní případ</a>
+  </div>
+
+<table class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Společnost</th>
+            <th>Nabídek celkem</th>
+            <th>Servisů celkem</th>
+            <th>Naposledy upraveno</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for company in companies %}
+        <tr>
+            <td>
+                <a href="{% url 'company' company.pk %}">{{company.name}}</a>
+                 <br>
+                <small class="text-muted d-block">{{company.address}}</small>
+            </td>
+            <td class="text-left">{{company.price_bid_counter.all.count}}
+                <small class="text-muted d-block">poslední: {{company.price_bid_counter.last}}</small>
+            </td>
+            <td class="text-center"></td>
+            <td class="text-center">{{company.bids.created_at.last}}</td>    
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endblock %}
+
