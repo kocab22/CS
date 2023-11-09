@@ -44,7 +44,7 @@ def new_bid(request, pk):
     initial_company = company.pk
 
     if request.method == 'POST':
-        form = NewPriceBidForm(request.POST, initial={'company': initial_company})
+        form = NewPriceBidForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -52,5 +52,5 @@ def new_bid(request, pk):
     else:
         form = NewPriceBidForm(initial={'company': initial_company})
         
-    context = {'company':company,'form':form,}
+    context = {'company':company,'form':form}
     return render (request, 'new_bid.html', context)
