@@ -29,6 +29,7 @@ urlpatterns = [
     re_path(r'^company/(?P<pk>\d+)/$', views.company, name='company'),
     re_path(r'^company/(?P<pk>\d+)/new_bid/$', views.new_bid, name='new_bid'),
     re_path(r'^about/$', views.about, name='about'),
+    re_path(r'^company/(?P<pk>\d+)/test/$', views.test, name='test'),
     path('admin/', admin.site.urls),
 
 ]

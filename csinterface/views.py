@@ -54,3 +54,17 @@ def new_bid(request, pk):
         
     context = {'company':company,'form':form}
     return render (request, 'new_bid.html', context)
+
+def test(request, pk):
+    company = get_object_or_404(Company, pk=pk)
+
+    if request.method == 'POST':
+        form = NewPriceBidForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = NewPriceBidForm()
+        
+    context = {'company':company,'form':form}
+    return render (request, 'test.html', context)
